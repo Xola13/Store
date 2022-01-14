@@ -33,10 +33,10 @@ let cars = JSON.parse(localStorage.getItem("cars"))
         img: "https://drive-my.com/wp-content/uploads/2019/08/Sid_2020-bmw-x7-pick-up.jpg"
     },
     {
-        title: "Bmw X2 ",
-        category: "Bakkie",
+        title: "Bmw Z4 ",
+        category: "Cabriolet",
         price: "950 000",
-        img: "https://www.carmag.co.za/wp-content/uploads/2019/04/eev4q5g0x5lzc1pv.jpg"
+        img: "https://cdn.motor1.com/images/mgl/wzYbN/s1/2020-bmw-z4-by-ac-schnitzer.webp"
     },
     {
         title: "Bmw i8",
@@ -64,6 +64,7 @@ let cart = JSON.parse(localStorage.getItem("cart"))
 //READ
 
 function readCars(cars) {
+  document.querySelector("#badge").innerHTML = cart.length;
     document.querySelector("#cars").innerHTML = "";
     cars.forEach((car, position) => {
         document.querySelector("#cars").innerHTML += `
@@ -72,6 +73,7 @@ function readCars(cars) {
         <div class="card-body">
           <h5 class="card-title">${car.title}</h5>
           <p class="card-text">R${car.price}</p>
+          <input type="number" min=1 value=1 id="addToCartCar${position}" style="width:45px" >
           <button type="button" class="btn btn-secondary" onclick="addToCartCar(${position})">
           <i class="material-icons">add_shopping_cart</i>
           </button>
@@ -248,8 +250,12 @@ function createCar() {
   // }
 
 function addToCartCar(position) {
-  cart.push({...cars[position]});
+  let qty = document.querySelector(`#addToCartCar${position}`).value;
+  alert(`Added ${qty} to cart`);
+  cart.push({...cars[position],qty});
+  document.querySelector("#badge").innerHTML = cart.length;
   localStorage.setItem("cart", JSON.stringify(cart));
   console.log(cart)
+  readCars(cars)
   }
   

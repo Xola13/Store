@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body >
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -35,11 +35,11 @@
             <ul class="navbar-nav mb-2 mb-lg-0 mr-auto">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="./index.html"
-                  >Home</a
+                  ><i class="material-icons" style="color: tan;">home</i></a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./cart.html">Cart</a>
+                <a class="nav-link" href="./cart.html"><i class="material-icons" data-toggle="tooltip" title="Add to cart">add_shopping_cart</i><span id="badge"></span></a>
               </li>
               <li class="nav-item">
                 <!-- Button trigger modal -->
@@ -141,6 +141,8 @@
           </div>
         </div>
       </nav>
+
+      <div id="badge"></div>
       <div id="cars" class="container d-flex">
 
       </div>
