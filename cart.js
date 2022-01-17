@@ -63,7 +63,7 @@ function updateCart(position) {
   let qty = document.querySelector(`#remove${position}`).value;
   cart[position] = { ...cart[position], qty };
   localStorage.setItem("cart", JSON.stringify(cart));
-  readCars(cart);
+   readCars(cart);
   console.log(cart)
 }
 
@@ -98,7 +98,7 @@ function checkout() {
     if (confirmation) {
       cart.length = 0;
       localStorage.removeItem("cart");
-      readCart(cart);
+      readCars(cart);
     }
   } catch (err) {
     alert(err);
