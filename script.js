@@ -5,55 +5,55 @@ let cars = JSON.parse(localStorage.getItem("cars"))
     {
         title: "Bmw 325i",
         category: "Sedan",
-        price: "250 000",
+        price: 250000,
         img: "https://cdn.bmwblog.com/wp-content/uploads/2019/08/E30-BMW-M3-test-drive-95.jpg"
     },
     {
         title: "Bmw 750 Li",
         category: "Sedan",
-        price: "1 250 000",
+        price: 1250000,
         img: "https://www.carmag.co.za/wp-content/uploads/2019/04/eev4q5g0x5lzc1pv.jpg"
     },
     {
         title: "Bmw 8 series",
         category: "Cabriolet",
-        price: "1 550 000",
+        price: 1550000,
         img: "https://cdn.motor1.com/images/mgl/rgBGY/s1/2019-bmw-8er-cabriolet.jpg"
     },
     {
         title: "Bmw M4",
         category: "Cabriolet",
-        price: "850 000",
+        price: 850000,
         img: "https://cdn.bmwblog.com/wp-content/uploads/2020/09/BMW-M4-Cabrio-render.png"
     },
     {
         title: "Bmw X7 doubble cab",
         category: "Bakie",
-        price: "2 250 000",
+        price: 2250000,
         img: "https://drive-my.com/wp-content/uploads/2019/08/Sid_2020-bmw-x7-pick-up.jpg"
     },
     {
         title: "Bmw Z4 ",
         category: "Cabriolet",
-        price: "950 000",
+        price: 950000,
         img: "https://cdn.motor1.com/images/mgl/wzYbN/s1/2020-bmw-z4-by-ac-schnitzer.webp"
     },
     {
         title: "Bmw i8",
         category: "Sport",
-        price: "1 560 000",
+        price: 1560000,
         img: "https://www.motortrend.com/uploads/sites/5/2010/11/35153148.jpeg.jpg"
     },
     {
         title: "Bmw i9 M",
         category: "Sport",
-        price: "3 500 000",
+        price: 3500000,
         img: "https://www.autocar.co.uk/sites/autocar.co.uk/files/images/car-reviews/first-drives/legacy/bmw_i9_mag_final.jpg"
     },
     {
         title: "Bmw van",
-        category: "Mini-bus",
-        price: "1 000 000",
+        category: "Mini-van",
+        price: 1000000,
         img: "https://i.pinimg.com/736x/4a/ab/1c/4aab1c9c7473ca7f085e165b8f2c56aa.jpg"
     },
 ];
@@ -259,3 +259,50 @@ function addToCartCar(position) {
   readCars(cars)
   }
   
+  // SORT BY CATEGORY
+function sortCategory() {
+  let category = document.querySelector("#sortCategory").value;
+
+  if (category == "All") {
+    return readCars(cars);
+  }
+
+  let foundCars = cars.filter((car) => {
+    return car.category == category;
+  });
+
+  readCars(foundCars);
+  console.log(foundCars);
+}
+
+// SORT BY NAME
+
+function sortName() {
+  let direction = document.querySelector("#sortName").value;
+
+  let sortedCars = cars.sort((a, b) => {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    }
+    if (a.title.toLowerCase() > b.title.toLowerCase()) {
+      return 1;
+    }
+    return 0;
+  });
+  if (direction == "descending") sortedCars.reverse();
+  console.log(sortedCars);
+  readCars(cars);
+}
+
+// SORT BY PRICE
+
+function sortPrice() {
+  let direction = document.querySelector("#sortPrice").value;
+
+  let sortedCars = cars.sort((a, b) => a.price - b.price);
+
+  console.log(sortedCars);
+
+  if (direction == "descending") sortedCars.reverse();
+  readCars(sortedCars);
+}
